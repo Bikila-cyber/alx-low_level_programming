@@ -1,0 +1,1 @@
+this project is all abour argv and argc in C programming!!
