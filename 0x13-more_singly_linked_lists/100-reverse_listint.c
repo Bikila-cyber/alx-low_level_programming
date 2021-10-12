@@ -1,29 +1,32 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
-
 /**
- * main - check the code for Holberton School students.
- *
- * Return: Always 0.
+ * reverse_listint - reverses a listint_t linked list
+ * @head: double pointer to head
+ * Return: address of head of list
  */
-int main(void)
+listint_t *reverse_listint(listint_t **head)
 {
-    listint_t *head;
+	listint_t *next_dest = NULL, *tmpd = NULL, *current = *head;
 
-    head = NULL;
-    add_nodeint_end(&head, 0);
-    add_nodeint_end(&head, 1);
-    add_nodeint_end(&head, 2);
-    add_nodeint_end(&head, 3);
-    add_nodeint_end(&head, 4);
-    add_nodeint_end(&head, 98);
-    add_nodeint_end(&head, 402);
-    add_nodeint_end(&head, 1024);
-    print_listint(head);
-    reverse_listint(&head);
-    print_listint(head);
-    free_listint2(&head);
-    return (0);
+	if (!head || !(*head))
+		return (*head);
+
+	next_dest = current->next;
+	current->next = NULL;
+
+	while (next_dest)
+	{
+		tmpd = next_dest->next;
+		next_dest->next = current;
+		current = next_dest;
+		next_dest = tmpd;
+	}
+	*head = current;
+
+	return (*head);
 }
+
+/*
+*Draw a chart and study this algo
+*
+*/
